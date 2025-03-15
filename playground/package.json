@@ -1,0 +1,35 @@
+{
+  "name": "playground",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@tmagic/core": "^1.5.11",
+    "@tmagic/editor": "^1.5.11",
+    "@tmagic/element-plus-adapter": "^1.5.11",
+    "element-plus": "^2.9.5",
+    "lodash-es": "^4.17.21",
+    "monaco-editor": "^0.52.2",
+    "serialize-javascript": "^6.0.2",
+    "vant-adapter": "workspace:^",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^6.0.2",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@vue/tsconfig": "^0.7.0",
+    "sass": "^1.85.1",
+    "typescript": "~5.7.2",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.4"
+  }
+}

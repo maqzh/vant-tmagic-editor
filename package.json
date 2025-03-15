@@ -1,0 +1,18 @@
+{
+  "name": "vant-tmagic-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm --filter \"runtime\" --filter \"playground\" dev",
+    "mock": "pnpm --filter \"mock-server\" start",
+    "clean:top": "rimraf */**/dist */**/types */dist coverage dwt* temp packages/cli/lib",
+    "clean:modules": "rimraf node_modules **/node_modules **/**/node_modules",
+    "clean": "pnpm clean:top && pnpm clean:modules"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "runtime",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tmagic/core": "^1.5.11",
+    "@tmagic/stage": "^1.5.11",
+    "@tmagic/vue-runtime-help": "^1.1.1",
+    "axios": "^1.8.2",
+    "vant": "^4.9.17",
+    "vant-adapter": "workspace:*",
+    "vue": "^3.5.13",
+    "vue-demi": "^0.14.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.4"
+  }
+}

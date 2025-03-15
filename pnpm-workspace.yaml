@@ -1,0 +1,7 @@
+packages:
+  # 所有子目录下的包
+  - 'packages/*'
+  - 'playground'
+  - 'runtime'
+  # 排除测试目录
+  - '!**/test'

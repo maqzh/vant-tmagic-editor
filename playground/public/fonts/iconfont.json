@@ -1,0 +1,198 @@
+{
+  "id": "4849162",
+  "name": "components-icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "240132",
+      "name": "radio",
+      "font_class": "radio",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "792483",
+      "name": "calendar",
+      "font_class": "calendar",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    },
+    {
+      "icon_id": "880336",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "966314",
+      "name": "datepicker",
+      "font_class": "datepicker",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "1201491",
+      "name": "switch",
+      "font_class": "switch",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1766478",
+      "name": "input",
+      "font_class": "input",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "1899014",
+      "name": "sliders",
+      "font_class": "sliders",
+      "unicode": "e715",
+      "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "2471373",
+      "name": "swipe",
+      "font_class": "swipe",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "4766972",
+      "name": "tag",
+      "font_class": "tag",
+      "unicode": "e7e4",
+      "unicode_decimal": 59364
+    },
+    {
+      "icon_id": "5127233",
+      "name": "checkbox",
+      "font_class": "checkbox",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "7008981",
+      "name": "picture",
+      "font_class": "picture",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "8017648",
+      "name": "timepicker",
+      "font_class": "timepicker",
+      "unicode": "e6d4",
+      "unicode_decimal": 59092
+    },
+    {
+      "icon_id": "8687733",
+      "name": "rate",
+      "font_class": "rate",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "11643814",
+      "name": "steps",
+      "font_class": "steps",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "11723581",
+      "name": "signature",
+      "font_class": "signature",
+      "unicode": "e705",
+      "unicode_decimal": 59141
+    },
+    {
+      "icon_id": "13208307",
+      "name": "popup",
+      "font_class": "danchuang",
+      "unicode": "e842",
+      "unicode_decimal": 59458
+    },
+    {
+      "icon_id": "15617192",
+      "name": "tab",
+      "font_class": "tab",
+      "unicode": "e8ae",
+      "unicode_decimal": 59566
+    },
+    {
+      "icon_id": "15838494",
+      "name": "layout",
+      "font_class": "layout",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "17412913",
+      "name": "picker",
+      "font_class": "picker",
+      "unicode": "e707",
+      "unicode_decimal": 59143
+    },
+    {
+      "icon_id": "21014668",
+      "name": "button",
+      "font_class": "button",
+      "unicode": "e7cf",
+      "unicode_decimal": 59343
+    },
+    {
+      "icon_id": "25076685",
+      "name": "stepper",
+      "font_class": "stepper",
+      "unicode": "e76c",
+      "unicode_decimal": 59244
+    },
+    {
+      "icon_id": "25206796",
+      "name": "space",
+      "font_class": "space",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "26685140",
+      "name": "uploader",
+      "font_class": "uploader",
+      "unicode": "e778",
+      "unicode_decimal": 59256
+    },
+    {
+      "icon_id": "29445576",
+      "name": "cascader",
+      "font_class": "cascader",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "32948061",
+      "name": "sticky",
+      "font_class": "sticky",
+      "unicode": "e7bf",
+      "unicode_decimal": 59327
+    },
+    {
+      "icon_id": "36560194",
+      "name": "cell",
+      "font_class": "cell",
+      "unicode": "e940",
+      "unicode_decimal": 59712
+    },
+    {
+      "icon_id": "42575404",
+      "name": "divider",
+      "font_class": "divider",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    }
+  ]
+}
