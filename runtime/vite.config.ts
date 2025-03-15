@@ -13,9 +13,6 @@ export default defineConfig({
     alias: [
       {
         find: /^vant-adapter$/, replacement: path.resolve(__dirname, '../packages/vant-adapter/src/index.ts')
-      },
-      {
-        find: /^vue-runtime-help$/, replacement: path.resolve(__dirname, '../packages/vue-runtime-help/src/index.ts')
       }
     ]
   },

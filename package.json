@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pnpm --filter \"runtime\" --filter \"playground\" dev",
+    "dev": "pnpm --filter \"mock-server\" --filter \"runtime\" --filter \"playground\" dev",
     "mock": "pnpm --filter \"mock-server\" start",
     "clean:top": "rimraf */**/dist */**/types */dist coverage dwt* temp packages/cli/lib",
     "clean:modules": "rimraf node_modules **/node_modules **/**/node_modules",
