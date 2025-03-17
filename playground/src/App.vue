@@ -55,7 +55,7 @@ const stageRect = ref({
 const handleSave = async () => {
   const res = await saveFormData(formData.value)
   editor.value?.editorService.resetModifiedNodeId();
-  tMagicMessage.info(res.message || '保存成功')
+  tMagicMessage.success(res.message || '保存成功')
 }
 const handlePreview = async (services: Services) => {
   if (services?.editorService.get('modifiedNodeIds').size > 0) {

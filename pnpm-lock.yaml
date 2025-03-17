@@ -29,6 +29,9 @@ importers:
       '@tmagic/vue-runtime-help':
         specifier: ^1.1.1
         version: 1.1.1(@tmagic/core@1.5.11(typescript@5.8.2))(@tmagic/stage@1.5.11(@tmagic/core@1.5.11(typescript@5.8.2))(typescript@5.8.2))(@vue/composition-api@1.7.2(vue@3.5.13(typescript@5.8.2)))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21

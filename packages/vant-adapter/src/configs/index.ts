@@ -35,12 +35,12 @@ export const formItemProps = [
     },
     {
         text: '标签宽度',
-        name: 'label-width',
+        name: 'labelWidth',
         type: 'text',
     },
     {
         text: '标签对齐',
-        name: 'label-align',
+        name: 'labelAlign',
         type: 'select',
         options: [
             {label: 'left', value: 'left' },
@@ -51,12 +51,37 @@ export const formItemProps = [
     },
     {
         text: '内容对齐',
-        name: 'input-align',
+        name: 'inputAlign',
         type: 'select',
         options: [
             {label: 'left', value: 'left' },
             {label: 'right', value: 'right' },
             {label: 'center', value: 'center' }
         ]
+    },
+    {
+        text: '输入内容标红',
+        name: 'error',
+        type: 'switch',
+    },
+    {
+        text: '错误内容',
+        name: 'errorMessage',
+        type: 'text',
+    },
+    {
+        text: '错误内容对齐',
+        name: 'errorMessageAlign',
+        type: 'select',
+        options: [
+            {label: 'left', value: 'left' },
+            {label: 'right', value: 'right' },
+            {label: 'center', value: 'center' },
+        ],
+    },
+    {
+        text: '标签额外类名',
+        name: 'labelClass',
+        type: 'text',
     },
 ]

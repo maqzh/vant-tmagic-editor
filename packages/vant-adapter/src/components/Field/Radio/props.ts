@@ -22,12 +22,12 @@ export default [
             },
             {
                 text: '图标大小',
-                name: 'icon-size',
+                name: 'iconSize',
                 type: 'text',
             },
             {
                 text: '选中状态颜色',
-                name: 'checked-color',
+                name: 'checkedColor',
                 type: 'data-source-field-select',
                 fieldConfig: {
                     type: 'colorPicker',

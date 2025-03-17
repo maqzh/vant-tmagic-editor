@@ -1,3 +1,4 @@
+import { StyleSchema } from "@tmagic/core";
 import { 
     ActionSheetProps, 
     BadgeProps, 
@@ -59,10 +60,13 @@ import {
     TextEllipsisProps,
     TreeSelectProps,
     WatermarkProps,
-    FieldProps,
     RadioProps,
     RadioGroupProps,
     FormProps,
+    FieldRule,
+    CheckboxGroupProps,
+    FieldType,
+    CellGroupProps,
 } from "vant";
 
 export interface FormState {
@@ -93,16 +97,23 @@ export interface FieldState {
     setDisabled: (value: boolean) => void;
     getVisible: () => boolean;
     setVisible: (value: boolean) => void;
+    getRequired: () => boolean;
+    setRequired: (value: boolean) => void;
 }
 export interface ComponentProps<T> {
     id: string;
     name?: string;
     parentName?: string;
+    isContainer?: boolean;
     type: string;
     props: T;
     className?: string;
     style?: any;
     items?: any[];
+}
+export interface ContainerProps<T> extends ComponentProps<T> {
+    items: any[];
+    model?: any;
 }
 export interface LazyloadProps {
     loading: string;
@@ -125,6 +136,7 @@ export interface FormItemProps<T> extends ComponentProps<T> {
     values?: any;
     label: string;
     name: string;
+    valueType?: string,
     labelWidth?: number | string;
     labelAlign?: string;
     inputAlign?: string;
@@ -137,16 +149,49 @@ export interface FormItemProps<T> extends ComponentProps<T> {
     setValue?: (value: any) => void;
     getValue?: () => any;
 }
+export interface FormItemRule extends FieldRule {
+    
+}
 export interface FormConfig extends ComponentProps<FormProps> {
     config: FormItemProps<any>[] | FormItemProps<any>;
     onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
 }
-export interface FieldConfig extends FormItemProps<FieldProps> {
-
+export interface FieldConfig {
+    clsName?: string;
+    style?: StyleSchema;
+    label?: string;
+    name?: string;
+    value?: any;
+    labelWidth?: number | string;
+    labelAlign?: string;
+    inputAlign?: string;
+    disabled?: boolean;
+    required?: boolean;
+    rules?: FormItemRule[];
+    placeholder?: string;
+    error?: boolean;
+    errorMessage?: string;
+    readonly?: boolean;
+    clearable?: boolean;
+    autofocus?: boolean;
+    maxlength?: number;
+    showWordLimit?: boolean;
+    leftIcon?: string;
+    rightIcon?: string;
+    clearTrigger?: string;
+    formatTrigger?: string;
+    autocomplete?: string;
+    validateTrigger?: string;
+    formatter?: (value: string) => string;
+    parser?: (value: string) => string;
+    validateStatus?: string;
+    feedback?: string;
+    extra?: string;
 }
 export interface ButtonConfig extends ComponentProps<ButtonProps> {
 
 }
+export interface CellGroupConfig extends ContainerProps<CellGroupProps> {}
 export interface CellConfig extends ComponentProps<CellProps & {
     rightIcon?: string;
     extra?: string;
@@ -339,3 +384,24 @@ export interface RadioFieldConfig extends FormItemProps<RadioGroupProps> {
         value: any;
     }[];
 }
+export interface CheckboxFieldConfig extends FormItemProps<CheckboxGroupProps> {
+    options: {
+        label: string;
+        value: any;
+    }[];
+}
+export interface InputFieldConfig extends FormItemProps<{
+    type?: FieldType;
+}> {
+}
+export interface CalendarFieldConfig extends FormItemProps<CalendarProps & {
+    format?: string
+}> {}
+export interface DatePickerFieldConfig extends FormItemProps<DatePickerProps & {
+    delimiter?: string
+}> {}
+export interface PickerFieldConfig extends FormItemProps<PickerProps> {}
+export interface SwitchFieldConfig extends FormItemProps<SwitchProps> {}
+export interface TimePickerFieldConfig extends FormItemProps<TimePickerProps & {
+    delimiter?: string
+}> {}

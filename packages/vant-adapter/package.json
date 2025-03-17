@@ -26,6 +26,7 @@
   "peerDependencies": {
     "@tmagic/core": "^1.5.11",
     "@tmagic/vue-runtime-help": "^1.1.1",
+    "dayjs": "^1.11.13",
     "lodash-es": "^4.17.21",
     "vant": "^4.9.17",
     "vue": ">=2.6.0 || >=3.5.0"

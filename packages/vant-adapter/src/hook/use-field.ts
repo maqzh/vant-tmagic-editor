@@ -1,13 +1,23 @@
 import { inject, ref, computed, watch, ComponentInternalInstance, getCurrentInstance } from 'vue-demi';
 import { debounce } from 'lodash-es';
-import { FormState, FieldState, ChangeRecord } from '../schame';
+import { FormState, FieldState, ChangeRecord, FormItemRule } from '../schame';
 
 const getFormItemPropValue = (mForm: any, props: any, prop: string, defValue?: any): any => {
+  let propValue: any = undefined
   if (!props[prop] || !props.hasOwnProperty(prop) || props[prop] === '' 
     || !props.props || !props.props.hasOwnProperty(prop) || props.props[prop] === '') {
-    return mForm?.config?.[prop]
+    propValue = mForm?.config?.props?.[prop]
   }
-  return props[prop] || props.props[prop] || defValue
+  if (propValue == undefined) {
+    propValue = props[prop]
+  }
+  if (propValue == undefined && props.props) {
+    propValue = props.props[prop]
+  }
+  if (propValue == undefined) {
+    propValue = defValue
+  }
+  return propValue
 }
 
 const addField = (mForm?: FormState | null, prop?: string, ext?: any) => {
@@ -34,8 +44,17 @@ const addField = (mForm?: FormState | null, prop?: string, ext?: any) => {
 
 export function useField(props: any, emit?: any, changeEvent?: string) {
   const mForm = inject<FormState | null>('mForm');
-  const disabled = ref<boolean>(getFormItemPropValue(mForm, props, 'disabled', false))
+  const disabled = ref<boolean>(getFormItemPropValue(mForm, props, 'disabled') || false)
   const visible = ref<boolean>(props?.style?.display !== 'none')
+  const required = ref<boolean>(props.required || false)
+  const rules = computed<FormItemRule[]>(() => [
+    {
+      required: required.value,
+      message: props?.errorMessage || '内容不能为空',
+      trigger: 'onChange'
+    },
+    ...(props.rules || [])
+  ])
   addField(mForm, props.id, {
     getValue: () => {
       return props?.model[props?.name]
@@ -54,11 +73,19 @@ export function useField(props: any, emit?: any, changeEvent?: string) {
       }
     },
     getVisible: () => {
-      return visible?.value
+      return visible.value
     },
     setVisible: (value: boolean = true) => {
       if (visible) {
         visible.value = value
+      }
+    },
+    getRequired: () => {
+      return required.value
+    },
+    setRequired: (value: boolean = true) => {
+      if (required) {
+        required.value = value
       }
     },
   })
@@ -68,17 +95,19 @@ export function useField(props: any, emit?: any, changeEvent?: string) {
       disabled: disabled.value,
     }
   })
-  const fieldProps = computed(() => {
+  const fieldProps = computed<any>(() => {
     return {
       label: props.label,
       name: props.name,
-      value: props.value,
+      // value: props.model[props.name],
       labelWidth: getFormItemPropValue(mForm, props, 'labelWidth'),
       labelAlign: getFormItemPropValue(mForm, props, 'labelAlign'),
-      inputAlign: getFormItemPropValue(mForm, props, 'inputAlign'),
+      inputAlign: getFormItemPropValue(mForm, props, 'inputAlign', 'right'),
       disabled: disabled.value,
-      // className: props.className,
-      rules: props.rules,
+      required: required.value,
+      colon: props.colon || false,
+      clsName: props.className,
+      rules: rules.value,
       style: {
         ...props.style,
         position: 'relative',

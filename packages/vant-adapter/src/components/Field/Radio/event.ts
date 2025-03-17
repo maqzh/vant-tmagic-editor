@@ -1,6 +1,6 @@
 export default {
     events: [
-        'radio:change'
+        {label: '改变值事件', value: 'radio:change'}
     ],
     methods: []
 }

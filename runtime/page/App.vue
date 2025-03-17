@@ -7,24 +7,24 @@
       <Button @click="handleResetClick" type="success" size="normal" block>init</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleSetDataClick" type="warning" size="normal" block>setValues</Button>
+      <Button @click="handleFormValueClick" type="warning" size="normal" block>form values</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleGetDataClick" type="danger" size="normal" block>getValues</Button>
+      <Button @click="handleFieldValueClick" type="danger" size="normal" block>field value</Button>
     </Col>
   </Row>
   <Row :gutter="8" style="margin-top: 8px;">
-    <Col span="6">
-      <Button @click="handleGetFieldClick" type="primary" size="normal" block>getField</Button>
-    </Col>
-    <Col span="6">
-      <Button @click="handleSetFieldClick" type="success" size="normal" block>setField</Button>
-    </Col>
     <Col span="6">
       <Button @click="handleDisabledClick" type="warning" size="normal" block>disabled</Button>
     </Col>
     <Col span="6">
       <Button @click="handleVisibleClick" type="danger" size="normal" block>visible</Button>
+    </Col>
+    <Col span="6">
+      <Button @click="handleRequiredClick" type="primary" size="normal" block>required</Button>
+    </Col>
+    <Col span="6">
+      <Button @click="handleSetFieldClick" type="success" size="normal" block>setField</Button>
     </Col>
   </Row>
   <Divider></Divider>
@@ -57,34 +57,47 @@ const handleClearClick = () => {
 const handleResetClick = () => {
   form.value?.reset()
 };
-const handleSetDataClick = () => {
-  form.value?.setFieldsValue({
-    sqb: {
-      dxk: '1',
-      lx: 'b'
-    }
-  })
-};
-const handleGetDataClick = () => {
+const handleFormValueClick = () => {
+  // form.value?.setFieldsValue({
+  //   sqb: {
+  //     dxk: '1',
+  //     lx: 'b'
+  //   }
+  // })
   form.value?.validate().then(() => {
     showDialog({
-      title: '提示',
+      title: '表单数据提示',
       message: JSON.stringify(form.value?.getFieldsValue() || {})
     })
   })
-}
-const handleGetFieldClick = () => {
-  console.log(form.value?.getFieldValue('radio-field_63fe72f5'))
+};
+const handleFieldValueClick = () => {
+  form.value?.setFieldValue('radio-field_63fe72f5', '1')
+  form.value?.validate().then(() => {
+    showDialog({
+      title: '字段内容提示',
+      message: form.value?.getFieldValue('radio-field_63fe72f5')
+    })
+  })
 }
 const handleSetFieldClick = () => {
-  form.value?.setFieldValue('radio-field_63fe72f5', '1')
 }
+const disabled = ref<boolean>(false)
 const handleDisabledClick = () => {
-  form.value?.setFieldDisabled('radio-field_63fe72f5', true)
+  disabled.value = !disabled.value
+  form.value?.setFieldDisabled('radio-field_63fe72f5', disabled.value)
   console.log(form.value?.getFieldDisabled('radio-field_63fe72f5'))
 }
+const visible = ref<boolean>(true)
 const handleVisibleClick = () => {
-  form.value?.setFieldVisible('radio-field_63fe72f5', false)
+  visible.value = !visible.value
+  form.value?.setFieldVisible('radio-field_63fe72f5', visible.value)
   console.log(form.value?.getFieldVisible('radio-field_63fe72f5'))
+}
+const required = ref<boolean>(false)
+const handleRequiredClick = () => {
+  required.value = !required.value
+  form.value?.setFieldRequired('radio-field_63fe72f5', required.value)
+  console.log(form.value?.getFieldRequired('radio-field_63fe72f5'))
 }
 </script>

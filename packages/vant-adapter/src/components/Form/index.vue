@@ -2,6 +2,7 @@
   <Form 
     ref="formRef" 
     v-bind="props"
+    :style="style"
     :class="`tmagic-ui-form ${className || ''}`"
   >
     <Container 
@@ -42,7 +43,9 @@
   const changed = ref<boolean>(false);
   const initValues = ref<FormValue>({
     sqb: {
-      dxk: '2'
+      dxk: '2',
+      cb1: [0, 1],
+      rl: '2025-03-27'
     }
   });
   const { metaConfig } = useForm(formProps as MContainer);
@@ -124,6 +127,14 @@
     setFieldVisible: (id: string, visible: boolean = true): void => {
       const field: any = fields.get(id);
       field?.setVisible(visible);
+    },
+    getFieldRequired: (id: string): boolean => {
+      const field: any = fields.get(id);
+      return field?.getRequired();
+    },
+    setFieldRequired: (id: string, required: boolean = true): void => {
+      const field: any = fields.get(id);
+      field?.setRequired(required);
     },
   });
 

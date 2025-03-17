@@ -14,6 +14,7 @@
 import { Col as VantCol } from 'vant';
 import { ColConfig } from '../../schame';
 import {useField} from '../../hook';
+import Container from '../Container.vue';
 
 defineOptions({
     name: 'MagicUiCol',

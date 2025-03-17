@@ -29,21 +29,13 @@ export default defineConfig({
         'vue',
         '@tmagic/core',
         '@tmagic/vue-runtime-help',
-        'lodash-es'
+        'lodash-es',
+        'dayjs'
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {},
       },
     },
-  },
-  resolve: {
-    alias: [
-      {
-        find: /^vue-runtime-help$/,
-        replacement: path.resolve(__dirname, '../vue-runtime-help/src/index.ts') // 替换为项目根目录下的 src 目录
-      }
-    ],
-    extensions: ['.ts', '.js', '.vue', '.json'],
   }
 });
