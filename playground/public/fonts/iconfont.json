@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11978421",
+      "name": "group",
+      "font_class": "group",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "9316828",
+      "name": "row",
+      "font_class": "row",
+      "unicode": "e81c",
+      "unicode_decimal": 59420
+    },
+    {
+      "icon_id": "17411885",
+      "name": "badge",
+      "font_class": "badge",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
       "icon_id": "240132",
       "name": "radio",
       "font_class": "radio",
@@ -113,7 +134,7 @@
     {
       "icon_id": "13208307",
       "name": "popup",
-      "font_class": "danchuang",
+      "font_class": "popup",
       "unicode": "e842",
       "unicode_decimal": 59458
     },

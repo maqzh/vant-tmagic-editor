@@ -2,42 +2,22 @@ import type { ComponentGroup } from '@tmagic/editor';
 
 export default [
   {
-    title: '基础组件',
+    title: '容器组件',
     items: [
+      {
+        icon: 'iconfont icon-row',
+        text: '行容器',
+        type: 'row'
+      },
       {
         icon: 'iconfont icon-group',
         text: '分组框',
         type: 'cell-group'
       },
       {
-        icon: 'iconfont icon-button',
-        text: '按钮',
-        type: 'button'
-      },
-      {
-        icon: 'iconfont icon-cell',
-        text: '单元格',
-        type: 'cell'
-      },
-      {
-        icon: 'iconfont icon-picture',
-        text: '图片',
-        type: 'image'
-      },
-      {
-        icon: 'iconfont icon-row',
-        text: '行',
-        type: 'row'
-      },
-      {
         icon: 'iconfont icon-popup',
         text: '弹出层',
         type: 'popup'
-      },
-      {
-        icon: 'iconfont icon-space',
-        text: '间距',
-        type: 'space'
       },
     ],
   },
@@ -113,6 +93,31 @@ export default [
         icon: 'iconfont icon-uploader',
         text: '文件上传',
         type: 'uploader'
+      },
+    ],
+  },
+  {
+    title: '基础组件',
+    items: [
+      {
+        icon: 'iconfont icon-button',
+        text: '按钮',
+        type: 'button'
+      },
+      {
+        icon: 'iconfont icon-cell',
+        text: '单元格',
+        type: 'cell'
+      },
+      {
+        icon: 'iconfont icon-picture',
+        text: '图片',
+        type: 'image'
+      },
+      {
+        icon: 'iconfont icon-space',
+        text: '间距',
+        type: 'space'
       },
     ],
   },
