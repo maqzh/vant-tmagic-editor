@@ -15,9 +15,7 @@ export default [
                     {label: 'month', value: 'month' },
                     {label: 'day', value: 'day' },
                 ],
-                fieldConfig: {
-                    multiple: true
-                }
+                multiple: true,
             },
             {
                 text: '标题',

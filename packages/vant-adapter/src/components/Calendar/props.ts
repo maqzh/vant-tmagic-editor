@@ -1,129 +1,135 @@
 export default [
-    {
+  {
+    name: 'props',
+    type: 'container',
+    items: [
+      {
         text: '类型',
         name: 'type',
         type: 'select',
         defaultValue: 'single',
         options: [
-            {
-                text: 'single',
-                value: 'single',
-            },
-            {
-                text: 'multiple',
-                value: 'multiple',
-            },
-            {
-                text: 'range',
-                value: 'range',
-            }
+          {
+            text: 'single',
+            value: 'single',
+          },
+          {
+            text: 'multiple',
+            value: 'multiple',
+          },
+          {
+            text: 'range',
+            value: 'range',
+          }
         ],
-    },
-    {
+      },
+      {
         text: '模式',
         name: 'switch-mode',
         type: 'select',
         options: [
-            {
-                text: 'none',
-                value: 'none'
-            },
-            {
-                text: 'month',
-                value: 'month'
-            },
-            {
-                text: 'year-month',
-                value: 'year-month'
-            }
+          {
+            text: 'none',
+            value: 'none'
+          },
+          {
+            text: 'month',
+            value: 'month'
+          },
+          {
+            text: 'year-month',
+            value: 'year-month'
+          }
         ]
-    },
-    {
+      },
+      {
         text: '标题',
         name: 'title',
         type: 'text',
-    },
-    {
+      },
+      {
         text: '主题色',
         name: 'color',
         type: 'data-source-field-select',
         fieldConfig: {
-            type: 'colorPicker',
+          type: 'colorPicker',
         },
-    },
-    {
+      },
+      {
         text: '默认日期',
-        name: 'default-date',
+        name: 'defaultDate',
         type: 'date'
-    },
-    {
+      },
+      {
         text: '最小日期',
-        name: 'min-date',
+        name: 'minDate',
         type: 'date'
-    },
-    {
+      },
+      {
         text: '最大日期',
-        name: 'max-date',
+        name: 'maxDate',
         type: 'date'
-    },
-    {
+      },
+      {
         text: '日期行高',
-        name: 'row-height',
+        name: 'rowHeight',
         type: 'text'
-    },
-    {
+      },
+      {
         text: '格式化函数',
         name: 'formatter',
         type: 'function'
-    },
-    {
+      },
+      {
         text: '弹层形式',
         name: 'poppable',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '只渲染可视区域',
-        name: 'lazy-render',
+        name: 'lazyRender',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '背景水印',
-        name: 'show-mark',
+        name: 'showMark',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '显示日历标题',
-        name: 'show-title',
+        name: 'showTitle',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '显示日历副标题',
-        name: 'show-subtitle',
+        name: 'showSubtitle',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '显示日历副标题',
-        name: 'show-confirm',
+        name: 'showConfirm',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '只读状态',
         name: 'readonly',
         type: 'switch'
-    },
-    {
+      },
+      {
         text: '确认按钮文字',
-        name: 'confirm-text',
+        name: 'confirmText',
         type: 'text',
-    },
-    {
+      },
+      {
         text: '确认按钮禁用状态时的文字',
-        name: 'confirm-disabled-text',
+        name: 'confirmDisabledText',
         type: 'text',
-    },
-    {
+      },
+      {
         text: '设置周起始日',
-        name: 'first-day-of-week',
+        name: 'firstDayOfWeek',
         type: 'text'
-    },
+      },
+    ]
+  }
 ]

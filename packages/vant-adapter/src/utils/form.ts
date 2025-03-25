@@ -20,12 +20,10 @@ export function getMetaValues(formConfig: MContainer) {
   const toggle = (items: any[], parentNode: any = {}) => {
     if (items) {
       items.forEach((item: any) => {
-        if (item.name) {
-          if (!item.isContainer) {
-            parentNode[item.name] = parentNode[item.name] || (item.items && item.items.length > 0 ? {} : getEmptyValue(item.valueType))
-          }
-          toggle(item.items, item.isContainer? metaConfig: metaConfig[item.name])
+        if (item.name && !item.isContainer) {
+          parentNode[item.name] = parentNode[item.name] || (item.items && item.items.length > 0 ? {} : getEmptyValue(item.valueType))
         }
+        toggle(item.items, item.isContainer || !item.name? metaConfig: metaConfig[item.name])
       })
     }
   }
@@ -50,6 +48,7 @@ export async function initFormValue(
       values = val;
     }
   }
+  
   return {
     [formName]: values
   };
@@ -62,25 +61,23 @@ function initFormItemValue(
   value: FormValue,
 ) {
   const { valueType: type, name, items } = item;
+  let compName = item.isContainer? undefined: name;
   let subInitValues = initValue;
-  if (!item.isContainer) {
-    if (name) {
-      value[name] = getEmptyValue(type);
-      subInitValues = initValue[name];
-      if (typeof subInitValues === 'undefined' && name.indexOf('.') > -1) {
-        const paths = name.split('.');
-        subInitValues = initValue;
-        for (let i = 0; i < paths.length; i++) {
-          const path = paths[i];
-          subInitValues = subInitValues[path];
-          if (typeof subInitValues === 'undefined') {
-            break;
-          }
+  if (compName) {
+    value[name] = getEmptyValue(type);
+    subInitValues = initValue[name];
+    if (typeof subInitValues === 'undefined' && name.indexOf('.') > -1) {
+      const paths = name.split('.');
+      subInitValues = initValue;
+      for (let i = 0; i < paths.length; i++) {
+        const path = paths[i];
+        subInitValues = subInitValues[path];
+        if (typeof subInitValues === 'undefined') {
+          break;
         }
-
       }
     }
-    if (name && typeof subInitValues !== 'undefined') {
+    if (typeof subInitValues !== 'undefined') {
       if (type === 'number') {
         value[name] = Number(subInitValues);
       } else if (typeof subInitValues === 'object') {
@@ -92,7 +89,7 @@ function initFormItemValue(
     }
   }
   if (items) {
-    return createValues(mForm, items, subInitValues, name ? value[name] : value);
+    return createValues(mForm, items, subInitValues, compName? value[name] : value);
   }
   return unflatten(value);
 }

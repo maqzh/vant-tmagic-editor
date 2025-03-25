@@ -1,4 +1,4 @@
 export default {
-    events: ['change', 'finish', 'click-tab'],
+    events: ['cascader:change', 'cascader:finish', 'cascader:click-tab'],
     methods: []
 }

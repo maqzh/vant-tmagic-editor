@@ -1,5 +1,6 @@
 export default {
   items: [],
+  isContainer: true,
   props: {
     direction: 'horizontal',
     size: '8px',
@@ -8,6 +9,6 @@ export default {
   },
   style: {
     width: '100%',
-    height: '100%',
+    minHeight: '22px',
   },
 };

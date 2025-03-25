@@ -1,0 +1,27 @@
+export default {
+  label: '数字',
+  props: {
+    min: 1,
+    max: 100,
+    autoFixed: true,
+    defaultValue: 1,
+    step: 1,
+    inputWidth: '32px',
+    buttonSize: '28px',
+    decimalLength: 0,
+    theme: '',
+    integer: false,
+    disabled: false,
+    disablePlus: false,
+    disableMinus: false,
+    disableInput: false,
+    showPlus: true,
+    showMinus: true,
+    showInput: true,
+    longPress: true,
+    allowEmpty: true,
+  },
+  style: {
+    position: 'relative',
+  },
+};

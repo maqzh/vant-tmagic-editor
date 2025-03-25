@@ -3,10 +3,14 @@
         v-bind="props"
         :style="style"
         :class="`magic-ui-space ${className}`"
-        @click="handleClick"
+        @click="$emit('click', $event)"
     >
         <slot>
-            <Container :config="config.items"></Container>
+            <Container 
+                :config="items"
+                :model="model || {}"
+                :parent-name="parentName"
+            ></Container>
         </slot>
     </VantSpace>
 </template>
@@ -15,15 +19,13 @@
 import { Space as VantSpace } from 'vant';
 import Container from '../Container.vue';
 import { SpaceConfig } from '../../schame';
-import { useField } from '../../hook';
 
 defineOptions({
     name: 'MagicUiSpace',
 });
 
-const config = defineProps<SpaceConfig>();
-const emit = defineEmits(['click']);
-const { handleClick } = useField(config, emit);
+defineProps<SpaceConfig>();
+defineEmits(['click']);
 </script>
 
 <style lang="scss">

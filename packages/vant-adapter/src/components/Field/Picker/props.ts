@@ -7,6 +7,16 @@ export default [
         title: '组件属性',
         items: [
             {
+                text: '标题',
+                name: 'title',
+                type: 'text',
+            },
+            {
+                text: '占位提示符',
+                name: 'placeholder',
+                type: 'text',
+            },
+            {
                 text: '选项',
                 name: 'columns',
                 type: 'table',
@@ -20,11 +30,6 @@ export default [
                         label: '值',
                     },
                 ],
-            },
-            {
-                text: '标题',
-                name: 'title',
-                type: 'text',
             },
             {
                 text: '确认按钮文字',

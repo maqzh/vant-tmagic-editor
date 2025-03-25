@@ -2,10 +2,14 @@
     <VantRow 
       v-bind="props"
       :style="style" 
-      :class="`magic-ui-row ${className}`"
+      :class="`magic-ui-row ${className || ''}`"
       @click="handleClick">
       <slot>
-        <Container :config="config.items"></Container>
+        <Container 
+          :config="config.items" 
+          :model="model || {}"
+          :parent-name="parentName"
+        ></Container>
       </slot>
     </VantRow>
 </template>
@@ -14,15 +18,15 @@
 import { Row as VantRow } from 'vant';
 import Container from '../Container.vue';
 import { RowConfig } from '../../schame';
-import {useField} from '../../hook';
-
 defineOptions({
     name: 'MagicUiRow',
 });
 
 const config = defineProps<RowConfig>();
 const emit = defineEmits(['click']);
-const { handleClick } = useField(config, emit);
+const handleClick = (event: Event) => {
+  emit('click', event);
+}
 </script>
 
 <style lang="scss">

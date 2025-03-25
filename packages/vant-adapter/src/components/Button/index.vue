@@ -5,7 +5,8 @@
     v-bind="props"
     :style="style"
     :class="`magic-ui-button ${className || ''}`"
-    @click="handleClick"
+    @click="emit('click', $event)"
+    @touchstart="emit('button:touchstart', $event)"
   >
     <slot>
       {{props?.text || ''}}
@@ -16,16 +17,15 @@
 <script lang="ts" setup>
 import { Button as VantButton } from 'vant';
 import { ButtonConfig } from '../../schame';
-import {useField} from '../../hook';
+import { useComponent } from '../../hook';
 
 defineOptions({
-  name: 'MagicUiVButton'
+  name: 'MagicUiButton'
 })
 
 const config = defineProps<ButtonConfig>();
-const emit = defineEmits(['click']);
-const { handleClick } = useField(config, emit);
-
+const emit = defineEmits(['click', 'button:touchstart']);
+useComponent(config)
 </script>
 
 <style lang="scss">

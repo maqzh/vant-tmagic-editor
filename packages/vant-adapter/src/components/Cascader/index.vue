@@ -5,7 +5,7 @@
     v-bind="props"
     :style="style"
     :class="`magic-ui-cascader ${className || ''}`"
-    @change="handleChange"
+    @change="debounceChangeHandler"
     @finish="handleFinish"
     @click-tab="handleClickTab"
   >
@@ -23,20 +23,18 @@ defineOptions({
 })
 
 const config = defineProps<CascaderConfig>();
-const emit = defineEmits(['change', 'finish', 'click-tab']);
-const { handleChange } = useField(config, emit);
+const emit = defineEmits(['cascader:change', 'cascader:finish', 'cascader:click-tab']);
+const { debounceChangeHandler } = useField(config, emit, 'cascader:change');
 
 const handleFinish = (value: any) => {
-  emit('finish', value);
+  emit('cascader:finish', value);
 };
 
 const handleClickTab = (value: any) => {
-  emit('click-tab', value);
+  emit('cascader:click-tab', value);
 };
 </script>
 
 <style lang="scss">
-.v-cascader {
-  // 自定义样式
-}
+
 </style>

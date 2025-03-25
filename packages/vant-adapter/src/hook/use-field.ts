@@ -1,6 +1,8 @@
 import { inject, ref, computed, watch, ComponentInternalInstance, getCurrentInstance } from 'vue-demi';
 import { debounce } from 'lodash-es';
+import { useComponent } from './use-component';
 import { FormState, FieldState, ChangeRecord, FormItemRule } from '../schame';
+import { FORM_INJECT_KEY } from '../utils/constant';
 
 const getFormItemPropValue = (mForm: any, props: any, prop: string, defValue?: any): any => {
   let propValue: any = undefined
@@ -43,7 +45,7 @@ const addField = (mForm?: FormState | null, prop?: string, ext?: any) => {
 };
 
 export function useField(props: any, emit?: any, changeEvent?: string) {
-  const mForm = inject<FormState | null>('mForm');
+  const mForm = inject<FormState | null>(FORM_INJECT_KEY);
   const disabled = ref<boolean>(getFormItemPropValue(mForm, props, 'disabled') || false)
   const visible = ref<boolean>(props?.style?.display !== 'none')
   const required = ref<boolean>(props.required || false)
@@ -55,6 +57,7 @@ export function useField(props: any, emit?: any, changeEvent?: string) {
     },
     ...(props.rules || [])
   ])
+  useComponent(props)
   addField(mForm, props.id, {
     getValue: () => {
       return props?.model[props?.name]

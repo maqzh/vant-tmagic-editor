@@ -55,7 +55,7 @@ import {
     StickyProps,
     SwipeProps,
     TabbarProps,
-    TabProps,
+    TabsProps,
     TagProps,
     TextEllipsisProps,
     TreeSelectProps,
@@ -67,7 +67,17 @@ import {
     CheckboxGroupProps,
     FieldType,
     CellGroupProps,
+    TabProps,
 } from "vant";
+
+export interface PageState {
+    setComponent: (id: string, component: any) => void;
+    getComponent: (id: string) => any;
+    deleteComponent: (id: string) => void;
+    getComponents: () => any[];
+    getRootForm: () => FormState | undefined;
+    setRootForm: (form: FormState) => void;
+}
 
 export interface FormState {
     initValues: FormValue;
@@ -204,16 +214,16 @@ export interface IconConfig extends ComponentProps<IconProps> {
 export interface ImageConfig extends ComponentProps<ImageProps> {
 
 }
-export interface RowConfig extends ComponentProps<RowProps> {
+export interface RowConfig extends ContainerProps<RowProps> {
     
 }
-export interface ColConfig extends ComponentProps<ColProps> {
+export interface ColConfig extends ContainerProps<ColProps> {
 
 }
-export interface PopupConfig extends ComponentProps<PopupProps> {
+export interface PopupConfig extends ContainerProps<PopupProps> {
 
 }
-export interface SpaceConfig extends ComponentProps<SpaceProps> {
+export interface SpaceConfig extends ContainerProps<SpaceProps> {
 
 }
 export interface CalendarConfig extends ComponentProps<CalendarProps> {
@@ -261,7 +271,7 @@ export interface UploaderConfig extends ComponentProps<UploaderProps> {
 export interface ActionSheetConfig extends ComponentProps<ActionSheetProps> {
 
 }
-export interface DialogConfig extends ComponentProps<DialogProps> {
+export interface DialogConfig extends ContainerProps<DialogProps> {
 
 }
 export interface DropdownMenuConfig extends ComponentProps<DropdownMenuProps> {
@@ -300,8 +310,10 @@ export interface CollapseConfig extends ComponentProps<CollapseProps> {
 export interface CountDownConfig extends ComponentProps<CountDownProps> {
 
 }
-export interface DividerConfig extends ComponentProps<DividerProps> {
-
+export interface DividerConfig extends ComponentProps<DividerProps & {
+    text?: string;
+}> {
+    
 }
 export interface EmptyConfig extends ComponentProps<EmptyProps> {
 
@@ -330,10 +342,18 @@ export interface ProgressConfig extends ComponentProps<ProgressProps> {
 export interface SkeletonConfig extends ComponentProps<SkeletonProps> {
 
 }
-export interface StepsConfig extends ComponentProps<StepsProps> {
+export interface StepsConfig extends ContainerProps<StepsProps> {
 
 }
-export interface StickyConfig extends ComponentProps<StickyProps> {
+export interface StepConfig extends ContainerProps<{
+    title?: string
+    titleTag?: string
+    desc?: string
+    descTag?: string
+}> {
+
+}
+export interface StickyConfig extends ContainerProps<StickyProps> {
 
 }
 export interface SwipeConfig extends ComponentProps<SwipeProps> {
@@ -369,8 +389,11 @@ export interface PaginationConfig extends ComponentProps<PaginationProps> {
 export interface SidebarConfig extends ComponentProps<SidebarProps> {
 
 }
-export interface TabConfig extends ComponentProps<TabProps> {
-
+export interface TabsConfig extends ContainerProps<TabsProps> {
+    
+}
+export interface TabConfig extends ContainerProps<TabProps> {
+    
 }
 export interface TabbarConfig extends ComponentProps<TabbarProps> {
 
@@ -405,3 +428,9 @@ export interface SwitchFieldConfig extends FormItemProps<SwitchProps> {}
 export interface TimePickerFieldConfig extends FormItemProps<TimePickerProps & {
     delimiter?: string
 }> {}
+export interface CascaderFieldConfig extends FormItemProps<CascaderProps &{
+    separator?: string
+}> {}
+export interface RateFieldConfig extends FormItemProps<RateProps> {}
+export interface StepperFieldConfig extends FormItemProps<StepperProps> {}
+export interface SignatureFieldConfig extends FormItemProps<SignatureProps> {}

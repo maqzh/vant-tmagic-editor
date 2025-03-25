@@ -14,12 +14,13 @@
   </Form>
 </template>
 <script setup lang="ts">
-  import { ref, reactive, watchEffect, watch, provide, shallowRef, toRaw } from 'vue';
+  import { inject, ref, reactive, watchEffect, watch, provide, shallowRef, toRaw } from 'vue';
   import { Form } from 'vant';
   import { cloneDeep, isEqual, merge } from 'lodash-es';
   import { MContainer } from "@tmagic/core"
   import Container from '../Container.vue';
-  import { FormState, FormConfig, FormValue, ChangeRecord } from '../../schame';
+  import { PageState, FormState, FormConfig, FormValue, ChangeRecord } from '../../schame';
+  import { PAGE_INJECT_KEY, FORM_INJECT_KEY } from '../../utils/constant';
   import { initFormValue } from '../../utils/form';
   import { unflatten } from '../../utils/flatten';
   import { useForm } from '../../hook';
@@ -171,7 +172,14 @@
     immediate: true
   });
 
-  provide('mForm', formState);
+  provide(FORM_INJECT_KEY, formState);
+
+  if (formProps.id === 'root_form') {
+    const mPage = inject<PageState | null>(PAGE_INJECT_KEY);
+    if (mPage) {
+      mPage.setRootForm(formState);
+    }
+  }
 
   defineExpose({
     formState

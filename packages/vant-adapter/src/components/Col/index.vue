@@ -2,10 +2,14 @@
     <VantCol 
       v-bind="props"
       :style="style" 
-      :class="`magic-ui-col ${className}`"
+      :class="`magic-ui-col ${className || ''}`"
       @click="handleClick">
       <slot>
-        <Container :config="config.items"></Container>
+        <Container 
+          :config="config.items"
+          :model="model || {}"
+          :parent-name="parentName"
+        ></Container>
       </slot>
     </VantCol>
 </template>
@@ -13,7 +17,6 @@
 <script lang="ts" setup>
 import { Col as VantCol } from 'vant';
 import { ColConfig } from '../../schame';
-import {useField} from '../../hook';
 import Container from '../Container.vue';
 
 defineOptions({
@@ -22,7 +25,9 @@ defineOptions({
 
 const config = defineProps<ColConfig>();
 const emit = defineEmits(['click']);
-const { handleClick } = useField(config, emit);
+const handleClick = (event: Event) => {
+  emit('click', event);
+}
 </script>
 
 <style lang="scss">

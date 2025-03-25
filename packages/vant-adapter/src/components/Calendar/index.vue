@@ -6,17 +6,17 @@
     v-bind="props"
     :style="style"
     :class="`magic-ui-calendar ${className || ''}`"
-    @click="handleClick"
+    @click="emit('click', $event)"
     @confirm="handleConfirm"
     @select="handleSelect"
-    @open="handleOpen"
-    @close="handleClose"
-    @opened="handleOpened"
-    @closed="handleClosed"
+    @open="emit('calendar:open')"
+    @close="emit('calendar:close')"
+    @opened="emit('calendar:opened')"
+    @closed="emit('calendar:closed')"
     @unselect="handleUnselect"
     @month-show="handleMonthShow"
-    @over-range="handleOverRange"
-    @click-subtitle="handleClickSubtitle"
+    @over-range="emit('calendar:over-range')"
+    @click-subtitle="emit('calendar:click-subtitle', $event)"
     @click-disabled-date="handleClickDisabledDate"
     @panel-change="handlePanelChange"
   >
@@ -50,39 +50,19 @@ const emit = defineEmits([
   'calendar:panel-change'
 ]);
 const calendarRef = ref<any>(null);
-const { handleClick } = useField(config, emit);
+useField(config, emit);
 
 const handleConfirm = (value: Date) => {
   emit('calendar:confirm', value);
-};
-
+}
 const handleSelect = (value: Date) => {
   emit('calendar:select', value);
-};
-
-const handleOpen = () => {
-  emit('calendar:open');
-}
-const handleClose = () => {
-  emit('calendar:close'); 
-}
-const handleOpened = () => {
-  emit('calendar:opened'); 
-}
-const handleClosed = () => {
-  emit('calendar:closed'); 
 }
 const handleUnselect = (value: Date) => {
   emit('calendar:unselect', value); 
 }
 const handleMonthShow = ({date, title}: { date: Date, title: string }) => {
   emit('calendar:month-show', { date, title });
-}
-const handleOverRange = () => {
-  emit('calendar:over-range');
-}
-const handleClickSubtitle = (event: MouseEvent) => {
-  emit('calendar:click-subtitle', event);
 }
 const handleClickDisabledDate = (value: Date | Date[]) => {
   emit('calendar:click-disabled-date', value);

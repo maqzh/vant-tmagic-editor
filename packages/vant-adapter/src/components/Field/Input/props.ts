@@ -49,17 +49,17 @@ export default [
             {
                 text: '最大字符',
                 name: 'maxlength',
-                type: 'text'
+                type: 'number'
             },
             {
                 text: '最小值',
                 name: 'min',
-                type: 'text'
+                type: 'number'
             },
             {
                 text: '最大值',
                 name: 'max',
-                type: 'text'
+                type: 'number'
             },
             {
                 text: '占位提示文字',

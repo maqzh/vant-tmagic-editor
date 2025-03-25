@@ -1,5 +1,8 @@
 <template>
-  <CellGroup v-bind="props" :style="style" :class="`magic-ui-cell-group ${className}`">
+  <CellGroup 
+    v-bind="props" 
+    :style="style" 
+    :class="`magic-ui-cell-group ${className || ''}`">
     <slot>
       <Container :config="items" :model="model" :parent-name="parentName"></Container>
     </slot>
@@ -14,7 +17,7 @@ import Container from '../../Container.vue'
 defineOptions({
   name: 'MagicUiCellGroup'
 })
-const config = defineProps<CellGroupConfig>();
+defineProps<CellGroupConfig>();
 </script>
 
 <style lang="scss"></style>
