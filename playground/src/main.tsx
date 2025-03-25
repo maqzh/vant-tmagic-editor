@@ -1,4 +1,4 @@
-import { createApp, Suspense, nextTick } from 'vue'
+import { createApp, Suspense } from 'vue'
 import * as monaco from 'monaco-editor';
 import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';

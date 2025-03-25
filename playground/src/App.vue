@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount, nextTick, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
 import { TMagicEditor, TMagicDialog, type Services, editorService, propsService, tMagicMessageBox, tMagicMessage } from '@tmagic/editor';
 import type { MApp, MContainer, MNode } from '@tmagic/core';
 import { useEditorPlayground } from './hooks/use-editor-app';
@@ -113,9 +113,17 @@ propsService.usePlugin({
   beforeFillConfig: (config: any) => [config, '100px'],
 });
 
+onMounted(() => {
+  // @ts-ignore
+  window.editorInstance = editor.value;
+});
+
 onBeforeUnmount(() => {
   editorService.removeAllPlugins();
+  // @ts-ignore
+  delete window.editorInstance;
 });
+
 
 </script>
 

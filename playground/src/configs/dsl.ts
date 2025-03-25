@@ -9,7 +9,7 @@ const dsl: MApp = {
   items: [
     {
       type: NodeType.PAGE,
-      id: 'page_1',
+      id: 'form_page',
       name: 'index',
       style: {
         position: 'relative',
@@ -27,7 +27,7 @@ const dsl: MApp = {
       created: {},
       items: [
         {
-          id: 'form_1',
+          id: 'root_form',
           name: 'root_form',
           type: 'form',
           props: {},

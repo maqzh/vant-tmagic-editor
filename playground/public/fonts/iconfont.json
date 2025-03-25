@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "41061008",
+      "name": "no",
+      "font_class": "no",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "574005",
+      "name": "custom",
+      "font_class": "custom",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "5961300",
+      "name": "form",
+      "font_class": "form",
+      "unicode": "ec4e",
+      "unicode_decimal": 60494
+    },
+    {
+      "icon_id": "7335489",
+      "name": "basic",
+      "font_class": "basic",
+      "unicode": "eb25",
+      "unicode_decimal": 60197
+    },
+    {
+      "icon_id": "12975237",
+      "name": "container",
+      "font_class": "container",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
       "icon_id": "11978421",
       "name": "group",
       "font_class": "group",

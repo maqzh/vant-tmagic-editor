@@ -9,7 +9,8 @@
     "mock": "pnpm --filter \"mock-server\" start",
     "clean:top": "rimraf */**/dist */**/types */dist coverage dwt* temp packages/cli/lib",
     "clean:modules": "rimraf node_modules **/node_modules **/**/node_modules",
-    "clean": "pnpm clean:top && pnpm clean:modules"
+    "clean": "pnpm clean:top && pnpm clean:modules",
+    "build": "pnpm --filter \"vant-adapter\" --filter \"runtime\" --filter \"playground\" build"
   },
   "keywords": [],
   "author": "",
