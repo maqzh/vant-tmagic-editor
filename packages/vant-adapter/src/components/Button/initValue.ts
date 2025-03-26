@@ -1,4 +1,5 @@
 export default {
+    noField: true,
     props: {
         type: 'default',
         size: 'normal',

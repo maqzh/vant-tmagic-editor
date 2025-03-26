@@ -1,7 +1,7 @@
 import { inject, ref, computed, watch, ComponentInternalInstance, getCurrentInstance } from 'vue-demi';
 import { debounce } from 'lodash-es';
 import { useComponent } from './use-component';
-import { FormState, FieldState, ChangeRecord, FormItemRule } from '../schame';
+import { FormState, FieldState, FormItemProps, ChangeRecord, FormItemRule } from '../schame';
 import { FORM_INJECT_KEY } from '../utils/constant';
 
 const getFormItemPropValue = (mForm: any, props: any, prop: string, defValue?: any): any => {
@@ -22,17 +22,14 @@ const getFormItemPropValue = (mForm: any, props: any, prop: string, defValue?: a
   return propValue
 }
 
-const addField = (mForm?: FormState | null, prop?: string, ext?: any) => {
+const addField = (mForm?: FormState | null, prop?: string, fieldState?: FieldState) => {
   if (!prop) return;
   const instance = getCurrentInstance() as ComponentInternalInstance;
   watch(
     () => instance?.proxy,
     (vm) => {
       if (vm) {
-        const fieldState: FieldState = {
-          instance: vm,
-          ...ext
-        }
+        fieldState!.instance = vm;
         mForm?.setField(prop, fieldState);
       } else {
         mForm?.deleteField(prop);
@@ -44,27 +41,27 @@ const addField = (mForm?: FormState | null, prop?: string, ext?: any) => {
   );
 };
 
-export function useField(props: any, emit?: any, changeEvent?: string) {
+export function useField(config: FormItemProps<any>, emit?: any, changeEvent?: string) {
   const mForm = inject<FormState | null>(FORM_INJECT_KEY);
-  const disabled = ref<boolean>(getFormItemPropValue(mForm, props, 'disabled') || false)
-  const visible = ref<boolean>(props?.style?.display !== 'none')
-  const required = ref<boolean>(props.required || false)
+  const disabled = ref<boolean>(getFormItemPropValue(mForm, config, 'disabled') || false)
+  const visible = ref<boolean>(config?.style?.display !== 'none')
+  const required = ref<boolean>(config.required || false)
   const rules = computed<FormItemRule[]>(() => [
     {
       required: required.value,
-      message: props?.errorMessage || '内容不能为空',
+      message: config?.errorMessage || '内容不能为空',
       trigger: 'onChange'
     },
-    ...(props.rules || [])
+    ...(config.rules || [])
   ])
-  useComponent(props)
-  addField(mForm, props.id, {
+  const { props, style, state } = useComponent(config)
+  const fieldState: FieldState = {
     getValue: () => {
-      return props?.model[props?.name]
+      return config?.model[config?.name]
     },
     setValue: (value: any) => {
-      if (props?.model && props?.name) {
-        props.model[props.name] = value;
+      if (config?.model && config?.name) {
+        config.model[config.name] = value;
       }
     },
     getDisabled: () => {
@@ -91,28 +88,30 @@ export function useField(props: any, emit?: any, changeEvent?: string) {
         required.value = value
       }
     },
-  })
+    ...state
+  }
+  addField(mForm, config.id, fieldState)
   const compProps = computed(() => {
     return {
-      ...props.props,
+      ...props.value,
       disabled: disabled.value,
     }
   })
   const fieldProps = computed<any>(() => {
     return {
-      label: props.label,
-      name: props.name,
+      label: config.label,
+      name: config.name,
       // value: props.model[props.name],
-      labelWidth: getFormItemPropValue(mForm, props, 'labelWidth'),
-      labelAlign: getFormItemPropValue(mForm, props, 'labelAlign'),
-      inputAlign: getFormItemPropValue(mForm, props, 'inputAlign', 'right'),
+      labelWidth: getFormItemPropValue(mForm, config, 'labelWidth'),
+      labelAlign: getFormItemPropValue(mForm, config, 'labelAlign'),
+      inputAlign: getFormItemPropValue(mForm, config, 'inputAlign', 'right'),
       disabled: disabled.value,
       required: required.value,
-      colon: props.colon || false,
-      clsName: props.className,
+      colon: config.colon || false,
+      clsName: config.className,
       rules: rules.value,
       style: {
-        ...props.style,
+        ...style.value,
         position: 'relative',
         display: visible.value ? '' : 'none'
       }
@@ -120,11 +119,11 @@ export function useField(props: any, emit?: any, changeEvent?: string) {
   })
   const changeHandler = (value: any) => {
     const event: ChangeRecord = {
-      propPath: props.parentName ? `${props.parentName}.${props.name}` : props.name,
+      propPath: config.parentName ? `${config.parentName}.${config.name}` : config.name,
       value: value
     }
     mForm?.setChangeValue(event)
-    props.onChange?.(value)
+    config.onChange?.(value)
     changeEvent && emit?.(changeEvent, value)
   }
   const debounceChangeHandler = debounce(changeHandler, 500)

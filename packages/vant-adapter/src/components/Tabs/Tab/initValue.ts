@@ -1,5 +1,5 @@
 export default {
-  isContainer: true,
+  noField: true,
   items: [],
   props: {
     disabled: false,

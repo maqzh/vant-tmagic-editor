@@ -4,65 +4,72 @@ export default [
     type: 'container',
     items: [
       {
-        text: '索引值',
-        name: 'active',
-        type: 'text',
+        text: '轮播间隔',
+        name: 'autoplay',
+        type: 'text'
       },
       {
-        text: '方向',
-        name: 'direction',
-        type: 'select',
-        options: [
-          {
-            text: '水平',
-            value: 'horizontal'
-          },
-          {
-            text: '垂直',
-            value: 'vertical'
-          }
-        ]
+        text: '动画时长',
+        name: 'duration',
+        type: 'text'
       },
       {
-        text: '当前步骤图标',
-        name: 'activeIcon',
-        type: 'text',
+        text: '初始索引值',
+        name: 'initialSwipe',
+        type: 'text'
       },
       {
-        text: '非当前步骤图标',
-        name: 'inactiveIcon',
-        type: 'text',
+        text: '滑块宽度',
+        name: 'width',
+        type: 'text'
       },
       {
-        text: '已完成步骤图标',
-        name: 'finishIcon',
-        type: 'text',
+        text: '滑块高度',
+        name: 'height',
+        type: 'text'
       },
       {
-        text: '已激活步骤颜色',
-        name: 'activeColor',
+        text: '开启循环播放',
+        name: 'loop',
+        type: 'switch'
+      },
+      {
+        text: '显示指示器',
+        name: 'showIndicators',
+        type: 'switch'
+      },
+      {
+        text: '纵向滚动',
+        name: 'vertical',
+        type: 'switch'
+      },
+      {
+        text: '手势滑动',
+        name: 'touchable',
+        type: 'switch'
+      },
+      {
+        text: '阻止滑动事件冒泡',
+        name: 'stopPropagation',
+        type: 'switch'
+      },
+      {
+        text: '阻止滑动事件冒泡',
+        name: 'lazyRender',
+        type: 'switch'
+      },
+      {
+        text: '指示器颜色	',
+        name: 'indicatorColor',
         type: 'data-source-field-select',
         fieldConfig: {
           type: 'colorPicker',
         },
       },
-      {
-        text: '未激活步骤颜色',
-        name: 'inactiveColor',
-        type: 'data-source-field-select',
-        fieldConfig: {
-          type: 'colorPicker',
-        },
-      },
-      {
-        text: '图标类名前缀',
-        name: 'iconPrefix',
-        type: 'text',
-      },
-    ],
+    ]
   },
   {
-    text: '步骤',
+    text: '循环项',
     name: 'items',
     type: 'table',
     items: [
@@ -71,7 +78,7 @@ export default [
         name: 'id',
         type: 'hidden',
         defaultValue: () => {
-          return `step_${Math.random().toString(36).substring(2)}`
+          return `swipe-item_${Math.random().toString(36).substring(2)}`
         },
       },
       {
@@ -79,14 +86,14 @@ export default [
         name: 'name',
         type: 'hidden',
         defaultValue: () => {
-          return `step${Math.random().toString(36).substring(2, 6)}`
+          return `swipe-item${Math.random().toString(36).substring(2, 6)}`
         },
       },
       {
         label: '组件类型',
         name: 'type',
         type: 'hidden',
-        defaultValue: 'step',
+        defaultValue: 'swipe-item',
       },
       {
         label: '是否非字段组件',
@@ -95,45 +102,23 @@ export default [
         defaultValue: true,
       },
       {
-        label: '标题',
+        label: '文字',
         name: 'props',
         type: 'container',
         items: [
           {
-            name: 'title',
+            name: 'text',
             type: 'text',
           }
         ],
       },
       {
-        label: '标题标签',
+        label: '图片地址',
         name: 'props',
         type: 'container',
         items: [
           {
-            name: 'titleTag',
-            type: 'text',
-          }
-        ],
-      },
-      {
-        label: '描述',
-        name: 'props',
-        type: 'container',
-        items: [
-          {
-            name: 'desc',
-            type: 'text',
-          }
-        ],
-      },
-      {
-        label: '描述标签',
-        name: 'props',
-        type: 'container',
-        items: [
-          {
-            name: 'descTag',
+            name: 'src',
             type: 'text',
           }
         ],

@@ -3,7 +3,6 @@ import type { ComponentGroup } from '@tmagic/editor';
 export default [
   {
     title: '容器组件',
-    // icon: 'icon-container',
     items: [
       {
         icon: 'iconfont icon-row',
@@ -41,7 +40,6 @@ export default [
   },
   {
     title: '表单组件',
-    // icon: 'icon-form',
     items: [
       {
         icon: 'iconfont icon-input',
@@ -143,7 +141,6 @@ export default [
   },
   {
     title: '基础组件',
-    // icon: 'icon-basic',
     items: [
       {
         icon: 'iconfont icon-button',
@@ -183,14 +180,6 @@ export default [
         type: 'steps',
         data: {
           name:'steps'
-        }
-      },
-      {
-        icon: 'iconfont icon-tag',
-        text: '标签',
-        type: 'tag',
-        data: {
-          name: 'tag'
         }
       },
       {

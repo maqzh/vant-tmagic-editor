@@ -12,11 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, provide } from 'vue';
+import { reactive, ref, provide, onMounted } from 'vue';
 import { asyncLoadCss, asyncLoadJs, type MPage } from '@tmagic/core';
 import { useApp } from '@tmagic/vue-runtime-help';
+// @ts-ignore
+import { useEmitter } from 'emitter-help';
 import Container from '../Container.vue';
-import { PageState, FormState, FormValue } from '../../schame';
+import { PageState, FormState, ComponentState, FormValue } from '../../schame';
 import { PAGE_INJECT_KEY } from '../../utils/constant';
 
 defineOptions({
@@ -27,20 +29,20 @@ const props = defineProps<{
     config: MPage
     onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
 }>();
-const components = new Map<string, any>();
+const components = new Map<string, ComponentState>();
 const formState = ref<FormState>();
 
 const pageState: PageState = reactive<PageState>({
-    setComponent: (id: string, component: any) => {
+    setComponent: (id: string, component: ComponentState) => {
       components.set(id, component);
     },
-    getComponent: (id: string): any => {
+    getComponent: (id: string): ComponentState | undefined => {
       return components.get(id);
     },
     deleteComponent: (id: string) => {
       components.delete(id);
     },
-    getComponents: (): any[] => {
+    getComponents: (): ComponentState[] => {
       return Object.values(components);
     },
     setRootForm: (form: FormState): void => {
@@ -48,6 +50,18 @@ const pageState: PageState = reactive<PageState>({
     },
     getRootForm: (): FormState | undefined => {
       return formState.value;
+    },
+    updateComponentProp: (id: string, propPath: string, value: any): void => {
+      const component = components.get(id);
+      if (component) {
+        component.setProp(propPath, value);
+      }
+    },
+    updateComponentStyle: (id: string, propPath: string, value: any): void => {
+      const component = components.get(id);
+      if (component) {
+        component.setStyle(propPath, value);
+      }
     },
 });
 
@@ -85,6 +99,10 @@ if (app?.jsEngine === 'browser') {
 }
 
 provide(PAGE_INJECT_KEY, pageState);
+
+onMounted(() => {
+    useEmitter().dispatch('pageMounted', pageState);
+});
 
 </script>
 

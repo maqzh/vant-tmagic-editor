@@ -31,7 +31,7 @@ const active = ref<number | string>(config.props.active || 0)
 
 const items = ref<StepConfig[]>(config.items || [])
 
-useComponent(config)
+const {props, style} = useComponent(config)
 
 defineExpose({
     setActive: (step: number | string) => {
@@ -48,7 +48,7 @@ defineExpose({
                 id: Math.random().toString(36).substring(2),
                 name: `step${Math.random().toString(36).substring(2)}`,
                 type: 'step',
-                isContainer: true,
+                noField: true,
                 parentName: config.parentName,
                 item: [],
                 props: {

@@ -1,5 +1,5 @@
 export default {
-  isContainer: true,
+  noField: true,
   props: {
     active: 0,
     type: 'line',

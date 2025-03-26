@@ -1,7 +1,9 @@
 <template>
     <VantTab
         v-bind="props"
-        :style="style"
+        :style="props.style"
+        :data-magic-component-id="id"
+        :data-magic-component-name="name"
         :class="`magic-ui-tab ${className || ''}`"
     >
         <slot>
@@ -16,16 +18,18 @@
 
 <script lang="ts" setup>
 import { Tab as VantTab } from 'vant'
-import Container from '../Container.vue'
-import { TabConfig } from '../../schame'
+import Container from '../../Container.vue'
+import { TabConfig } from '../../../schame'
+import { useComponent } from '../../../hook'
 
 defineOptions({
     name: 'MagicUiTab'
 })
 
-defineProps<TabConfig>()
+const config = defineProps<TabConfig>()
+const {props} = useComponent(config)
 </script>
 
 <style lang="scss">
 
-</style>
+</style>../../../schame../../../hook

@@ -1,5 +1,5 @@
 import { toRaw } from 'vue';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, isEmpty } from 'lodash-es';
 import { MContainer } from "@tmagic/core"
 import { unflatten } from './flatten';
 import { FormItemProps, FormState, FormValue } from '../schame';
@@ -20,10 +20,10 @@ export function getMetaValues(formConfig: MContainer) {
   const toggle = (items: any[], parentNode: any = {}) => {
     if (items) {
       items.forEach((item: any) => {
-        if (item.name && !item.isContainer) {
+        if (item.name && !item.noField) {
           parentNode[item.name] = parentNode[item.name] || (item.items && item.items.length > 0 ? {} : getEmptyValue(item.valueType))
         }
-        toggle(item.items, item.isContainer || !item.name? metaConfig: metaConfig[item.name])
+        toggle(item.items, item.noField || !item.name? metaConfig: metaConfig[item.name])
       })
     }
   }
@@ -61,9 +61,9 @@ function initFormItemValue(
   value: FormValue,
 ) {
   const { valueType: type, name, items } = item;
-  let compName = item.isContainer? undefined: name;
+  let isField = !item.noField && !isEmpty(name);
   let subInitValues = initValue;
-  if (compName) {
+  if (isField) {
     value[name] = getEmptyValue(type);
     subInitValues = initValue[name];
     if (typeof subInitValues === 'undefined' && name.indexOf('.') > -1) {
@@ -89,7 +89,7 @@ function initFormItemValue(
     }
   }
   if (items) {
-    return createValues(mForm, items, subInitValues, compName? value[name] : value);
+    return createValues(mForm, items, subInitValues, isField? value[name] : value);
   }
   return unflatten(value);
 }

@@ -24,7 +24,7 @@
       <Button @click="handleRequiredClick" type="primary" size="normal" block>required</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleSetFieldClick" type="success" size="normal" block>setField</Button>
+      <Button @click="handleSetPropsClick" type="success" size="normal" block>setProps</Button>
     </Col>
   </Row>
   <Divider></Divider>
@@ -39,16 +39,22 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { Row, Col, Button, Divider, showDialog } from 'vant';
-
+import { useEmitter } from 'emitter-help';
 import type { MPage } from '@tmagic/core';
 import { useComponent, useDsl } from '@tmagic/vue-runtime-help';
 
 const { pageConfig } = useDsl();
 const pageComponent = useComponent('page');
+
+const page = ref<any>();
 const form = ref<any>();
 const onInitValue = (f: any) => {
   form.value = f;
 }
+
+useEmitter().on('pageMounted', (p: any) => {
+  page.value = p;
+})
 
 const handleClearClick = () => {
   form.value?.clear()
@@ -80,7 +86,8 @@ const handleFieldValueClick = () => {
     })
   })
 }
-const handleSetFieldClick = () => {
+const handleSetPropsClick = () => {
+  page.value?.updateComponentProp('tabs_ef637b80', 'active', 'tabf')
 }
 const disabled = ref<boolean>(false)
 const handleDisabledClick = () => {

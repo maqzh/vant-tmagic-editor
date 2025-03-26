@@ -1,6 +1,6 @@
 export default {
     items: [],
-    isContainer: true,
+    noField: true,
     props: {
       position: 'top',
       offsetTop: 0,

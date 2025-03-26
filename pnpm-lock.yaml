@@ -8,6 +8,25 @@ importers:
 
   .: {}
 
+  packages/emitter-help:
+    dependencies:
+      mitt:
+        specifier: ^3.0.1
+        version: 3.0.1
+      vue-demi:
+        specifier: ^0.14.10
+        version: 0.14.10(@vue/composition-api@1.7.2(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
+    devDependencies:
+      typescript:
+        specifier: ~5.7.2
+        version: 5.7.3
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0)
+      vite-plugin-dts:
+        specifier: ^4.5.3
+        version: 4.5.3(@types/node@22.13.10)(rollup@4.35.0)(typescript@5.7.3)(vite@6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0))
+
   packages/mock-server:
     dependencies:
       body-parser:
@@ -32,6 +51,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      emitter-help:
+        specifier: workspace:^
+        version: link:../emitter-help
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -182,6 +204,9 @@ importers:
       axios:
         specifier: ^1.8.2
         version: 1.8.3
+      emitter-help:
+        specifier: workspace:^
+        version: link:../packages/emitter-help
       vant:
         specifier: ^4.9.17
         version: 4.9.17(vue@3.5.13(typescript@5.7.3))
@@ -2119,6 +2144,9 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
@@ -4015,6 +4043,19 @@ snapshots:
     dependencies:
       vue: 3.5.13(typescript@5.8.2)
 
+  '@vue/language-core@2.2.0(typescript@5.7.3)':
+    dependencies:
+      '@volar/language-core': 2.4.12
+      '@vue/compiler-dom': 3.5.13
+      '@vue/compiler-vue2': 2.7.16
+      '@vue/shared': 3.5.13
+      alien-signals: 0.4.14
+      minimatch: 9.0.5
+      muggle-string: 0.4.1
+      path-browserify: 1.0.1
+    optionalDependencies:
+      typescript: 5.7.3
+
   '@vue/language-core@2.2.0(typescript@5.8.2)':
     dependencies:
       '@volar/language-core': 2.4.12
@@ -4779,6 +4820,8 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
+  mitt@3.0.1: {}
+
   mlly@1.7.4:
     dependencies:
       acorn: 8.14.1
@@ -5278,6 +5321,25 @@ snapshots:
       vue: 3.5.13(typescript@5.8.2)
 
   vary@1.1.2: {}
+
+  vite-plugin-dts@4.5.3(@types/node@22.13.10)(rollup@4.35.0)(typescript@5.7.3)(vite@6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0)):
+    dependencies:
+      '@microsoft/api-extractor': 7.52.1(@types/node@22.13.10)
+      '@rollup/pluginutils': 5.1.4(rollup@4.35.0)
+      '@volar/typescript': 2.4.12
+      '@vue/language-core': 2.2.0(typescript@5.7.3)
+      compare-versions: 6.1.1
+      debug: 4.4.0(supports-color@5.5.0)
+      kolorist: 1.8.0
+      local-pkg: 1.1.1
+      magic-string: 0.30.17
+      typescript: 5.7.3
+    optionalDependencies:
+      vite: 6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - rollup
+      - supports-color
 
   vite-plugin-dts@4.5.3(@types/node@22.13.10)(rollup@4.35.0)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0)):
     dependencies:

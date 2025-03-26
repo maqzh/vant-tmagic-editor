@@ -30,8 +30,8 @@
 
 <script lang="ts" setup>
 import { Step } from 'vant';
-import Container from '../Container.vue';
-import { StepConfig } from '../../schame';
+import Container from '../../Container.vue';
+import { StepConfig } from '../../../schame';
 
 defineOptions({
     name: 'MagicUiStep'

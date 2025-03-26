@@ -1,7 +1,8 @@
 export default {
-  isContainer: true,
+  noField: true,
   name: 'cell_group',
   items: [],
+  props: {},
   style: {
     position: 'relative',
     width: '100%',

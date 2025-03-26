@@ -71,12 +71,14 @@ import {
 } from "vant";
 
 export interface PageState {
-    setComponent: (id: string, component: any) => void;
-    getComponent: (id: string) => any;
+    setComponent: (id: string, component: ComponentState) => void;
+    getComponent: (id: string) => ComponentState | undefined;
     deleteComponent: (id: string) => void;
-    getComponents: () => any[];
+    getComponents: () => ComponentState[];
     getRootForm: () => FormState | undefined;
     setRootForm: (form: FormState) => void;
+    updateComponentProp(id: string, propPath: string, value: any): void;
+    updateComponentStyle(id: string, propPath: string, value: any): void;
 }
 
 export interface FormState {
@@ -99,8 +101,14 @@ export interface FormState {
     clear: () => void;
     [key: string]: any;
 }
-export interface FieldState {
+export interface ComponentState {
     instance: any;
+    getProp(prop: string): any;
+    setProp(prop: string, value: any): void;
+    getStyle(prop: string): any;
+    setStyle(prop: string, value: any): void;
+}
+export interface FieldState extends ComponentState {
     getValue: () => any;
     setValue: (value: any) => void;
     getDisabled: () => boolean;
@@ -114,7 +122,7 @@ export interface ComponentProps<T> {
     id: string;
     name?: string;
     parentName?: string;
-    isContainer?: boolean;
+    noField?: boolean;
     type: string;
     props: T;
     className?: string;
@@ -147,6 +155,7 @@ export interface FormItemProps<T> extends ComponentProps<T> {
     label: string;
     name: string;
     valueType?: string,
+    errorMessage?: string;
     labelWidth?: number | string;
     labelAlign?: string;
     inputAlign?: string;
@@ -356,10 +365,21 @@ export interface StepConfig extends ContainerProps<{
 export interface StickyConfig extends ContainerProps<StickyProps> {
 
 }
-export interface SwipeConfig extends ComponentProps<SwipeProps> {
+export interface SwipeConfig extends ContainerProps<SwipeProps & {
+    text?: string
+    src?: string
+}> {
 
 }
-export interface TagConfig extends ComponentProps<TagProps> {
+export interface SwipeItemConfig extends ContainerProps<{
+    text?: string
+    src?: string
+}> {
+    
+}
+export interface TagConfig extends ComponentProps<TagProps & {
+    text: string
+}> {
 
 }
 export interface TextEllipsisConfig extends ComponentProps<TextEllipsisProps> {

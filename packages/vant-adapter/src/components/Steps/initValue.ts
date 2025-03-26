@@ -1,5 +1,6 @@
 export default {
     items: [],
+    noField: true,
     props: {
       direction: 'horizontal',
       activeIcon: 'checked',

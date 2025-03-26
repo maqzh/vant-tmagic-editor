@@ -151,8 +151,8 @@ export default [
         defaultValue: 'tab',
       },
       {
-        label: '是否容器组件',
-        name: 'isContainer',
+        label: '是否非字段组件',
+        name: 'noField',
         type: 'hidden',
         defaultValue: true,
       },

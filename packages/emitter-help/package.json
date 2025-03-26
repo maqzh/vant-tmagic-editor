@@ -1,0 +1,35 @@
+{
+  "name": "emitter-help",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "module": "dist/tmagic-emitter-help.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/tmagic-emitter-help.es.js",
+      "require": "./dist/tmagic-emitter-help.umd.ts"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "dependencies": {
+    "mitt": "^3.0.1",
+    "vue-demi": "^0.14.10"
+  }
+}

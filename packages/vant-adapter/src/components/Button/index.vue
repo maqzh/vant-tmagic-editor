@@ -5,8 +5,8 @@
     v-bind="props"
     :style="style"
     :class="`magic-ui-button ${className || ''}`"
-    @click="emit('click', $event)"
-    @touchstart="emit('button:touchstart', $event)"
+    @click="$emit('click', $event)"
+    @touchstart="$emit('button:touchstart', $event)"
   >
     <slot>
       {{props?.text || ''}}
@@ -24,8 +24,8 @@ defineOptions({
 })
 
 const config = defineProps<ButtonConfig>();
-const emit = defineEmits(['click', 'button:touchstart']);
-useComponent(config)
+defineEmits(['click', 'button:touchstart']);
+const {props, style} =useComponent(config)
 </script>
 
 <style lang="scss">
