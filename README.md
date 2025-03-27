@@ -14,9 +14,9 @@ packages
 
 runtime # runtime工程
 
- page -- 页面runtime
+ - page -- 页面runtime
 
- playground -- 设计器runtime
+ - playground -- 设计器runtime
 
 playground # 设计器工程
 
