@@ -3,7 +3,7 @@
 #### 介绍
 tmagic-editor 适配vant组件
 
-#### 软件架构
+#### 代码结构
 packages
 
  - emitter-help # 消息中枢工程
