@@ -41,17 +41,9 @@ export async function initFormValue(
   if (initVal && formName) {
     initVal = initVal[formName];
   }
-  let values = createValues(mForm, config, initVal);
-  if (mForm && mForm.onInitValue) {
-    const val = await mForm.onInitValue(mForm, { formValue: values, initValue: initValues });
-    if (val) {
-      values = val;
-    }
-  }
+  const values = {[formName]: createValues(mForm, config, initVal)};
   
-  return {
-    [formName]: values
-  };
+  return values;
 }
 
 function initFormItemValue(

@@ -89,37 +89,6 @@ importers:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@22.13.10)(rollup@4.35.0)(typescript@5.8.2)(vite@6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0))
 
-  packages/vue-runtime-help:
-    dependencies:
-      '@tmagic/core':
-        specifier: ^1.5.11
-        version: 1.5.11(typescript@5.8.2)
-      '@tmagic/schema':
-        specifier: ^1.5.11
-        version: 1.5.11(typescript@5.8.2)
-      '@tmagic/stage':
-        specifier: ^1.5.11
-        version: 1.5.11(@tmagic/core@1.5.11(typescript@5.8.2))(typescript@5.8.2)
-      '@vue/composition-api':
-        specifier: ^1.7.2
-        version: 1.7.2(vue@3.5.13(typescript@5.8.2))
-      vue:
-        specifier: '>=2.6.0 || >=3.5.0'
-        version: 3.5.13(typescript@5.8.2)
-      vue-demi:
-        specifier: ^0.14.10
-        version: 0.14.10(@vue/composition-api@1.7.2(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
-    devDependencies:
-      '@types/node':
-        specifier: ^22.13.9
-        version: 22.13.10
-      typescript:
-        specifier: '*'
-        version: 5.8.2
-      vite:
-        specifier: ^6.2.0
-        version: 6.2.1(@types/node@22.13.10)(sass@1.85.1)(terser@5.39.0)
-
   playground:
     dependencies:
       '@element-plus/icons-vue':
@@ -3851,6 +3820,7 @@ snapshots:
       scenejs: 1.10.3
     optionalDependencies:
       typescript: 5.8.2
+    optional: true
 
   '@tmagic/table@1.5.11(@tmagic/design@1.5.11(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(@tmagic/form@1.5.11(@tmagic/design@1.5.11(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(@tmagic/utils@1.5.11(@tmagic/schema@1.5.11(typescript@5.7.3))(typescript@5.7.3))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))':
     dependencies:
@@ -4042,6 +4012,7 @@ snapshots:
   '@vue/composition-api@1.7.2(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       vue: 3.5.13(typescript@5.8.2)
+    optional: true
 
   '@vue/language-core@2.2.0(typescript@5.7.3)':
     dependencies:

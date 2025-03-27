@@ -6,19 +6,17 @@
     >
     <Container 
       :config="config.items"
-      :on-init-value="onInitValue"
     ></Container>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, provide, onMounted } from 'vue';
+import { reactive, ref, provide, onMounted, onBeforeUnmount } from 'vue';
 import { asyncLoadCss, asyncLoadJs, type MPage } from '@tmagic/core';
 import { useApp } from '@tmagic/vue-runtime-help';
-// @ts-ignore
-import { useEmitter } from 'emitter-help';
+import { useEmitter, PAGE_LIFE_CYCLE } from 'emitter-help';
 import Container from '../Container.vue';
-import { PageState, FormState, ComponentState, FormValue } from '../../schame';
+import { PageState, FormState, ComponentState } from '../../schame';
 import { PAGE_INJECT_KEY } from '../../utils/constant';
 
 defineOptions({
@@ -27,7 +25,6 @@ defineOptions({
 
 const props = defineProps<{
     config: MPage
-    onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
 }>();
 const components = new Map<string, ComponentState>();
 const formState = ref<FormState>();
@@ -101,7 +98,11 @@ if (app?.jsEngine === 'browser') {
 provide(PAGE_INJECT_KEY, pageState);
 
 onMounted(() => {
-    useEmitter().dispatch('pageMounted', pageState);
+    useEmitter().dispatch(PAGE_LIFE_CYCLE.MOUNTED, pageState);
+});
+
+onBeforeUnmount(() => {
+    useEmitter().dispatch(PAGE_LIFE_CYCLE.UNMOUNTED, pageState);
 });
 
 </script>

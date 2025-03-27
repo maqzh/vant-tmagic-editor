@@ -14,10 +14,11 @@
   </Form>
 </template>
 <script setup lang="ts">
-  import { inject, ref, reactive, watchEffect, watch, provide, shallowRef, toRaw } from 'vue';
+  import { inject, ref, onMounted, onBeforeUnmount, reactive, watchEffect, watch, provide, shallowRef, toRaw } from 'vue';
   import { Form } from 'vant';
   import { cloneDeep, isEqual, merge } from 'lodash-es';
   import { MContainer } from "@tmagic/core"
+  import { useEmitter, FORM_LIFE_CYCLE } from 'emitter-help';
   import Container from '../Container.vue';
   import { PageState, FormState, FormConfig, FormValue, ChangeRecord } from '../../schame';
   import { PAGE_INJECT_KEY, FORM_INJECT_KEY } from '../../utils/constant';
@@ -42,13 +43,7 @@
   const formRef = ref();
   const initialized = ref<boolean>(false);
   const changed = ref<boolean>(false);
-  const initValues = ref<FormValue>({
-    sqb: {
-      dxk: '2',
-      cb1: [0, 1],
-      rl: '2025-03-27'
-    }
-  });
+  const initValues = ref<FormValue>({});
   const { metaConfig } = useForm(formProps as MContainer);
   const cloneMeta = () => {
     return cloneDeep(metaConfig || {})
@@ -104,6 +99,7 @@
         initValues: initValues.value
       }).then((value: FormValue) => {
         values.value = value;
+        useEmitter().dispatch(FORM_LIFE_CYCLE.INIT_VALUE, { values })
       });
       changeRecords.value = {}
       changed.value = false;
@@ -142,7 +138,6 @@
   watchEffect(async () => {
     formState.initValues = initValues.value;
     formState.values = values.value;
-    formState.onInitValue = formProps.onInitValue;
     if (typeof formProps.extendState === 'function') {
     const state = (await formProps.extendState(formState)) || {};
       Object.entries(state).forEach(([key, value]) => {
@@ -180,6 +175,13 @@
       mPage.setRootForm(formState);
     }
   }
+
+  onMounted(() => {
+    useEmitter().dispatch(FORM_LIFE_CYCLE.MOUNTED, formState)
+  })
+  onBeforeUnmount(() => {
+    useEmitter().dispatch(FORM_LIFE_CYCLE.UNMOUNTED)
+  })
 
   defineExpose({
     formState

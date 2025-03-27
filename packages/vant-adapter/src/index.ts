@@ -6,7 +6,7 @@ const externals = ['./components/temp/index.ts']
 const components: Record<string, any> = {}
 const propsConfig: Record<string, any> = {}
 const eventConfig: Record<string, any> = {}
-const valueConfig: Record<string, any> = {};
+const valueConfig: Record<string, any> = {}
 // @ts-ignore
 const modules = import.meta.glob('./components/**/index.ts', { eager: true })
 for (const key in modules) {

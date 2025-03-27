@@ -1,16 +1,16 @@
 <template>
   <Row :gutter="8">
     <Col span="6">
+      <Button @click="handleInitValuesClick" type="success" size="normal" block>init</Button>
+    </Col>
+    <Col span="6">
       <Button @click="handleClearClick" type="primary" size="normal" block>clear</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleResetClick" type="success" size="normal" block>init</Button>
+      <Button @click="handleResetClick" type="warning" size="normal" block>reset</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleFormValueClick" type="warning" size="normal" block>form values</Button>
-    </Col>
-    <Col span="6">
-      <Button @click="handleFieldValueClick" type="danger" size="normal" block>field value</Button>
+      <Button type="danger" size="normal" block>empty</Button>
     </Col>
   </Row>
   <Row :gutter="8" style="margin-top: 8px;">
@@ -24,14 +24,27 @@
       <Button @click="handleRequiredClick" type="primary" size="normal" block>required</Button>
     </Col>
     <Col span="6">
-      <Button @click="handleSetPropsClick" type="success" size="normal" block>setProps</Button>
+      <Button type="success" size="normal" block>empty</Button>
+    </Col>
+  </Row>
+  <Row :gutter="8" style="margin-top: 8px;">
+    <Col span="6">
+      <Button @click="handleFormValueClick" type="success" size="normal" block>form values</Button>
+    </Col>
+    <Col span="6">
+      <Button @click="handleFieldValueClick" type="warning" size="normal" block>field value</Button>
+    </Col>
+    <Col span="6">
+      <Button @click="handleSetPropsClick" type="primary" size="normal" block>setProps</Button>
+    </Col>
+    <Col span="6">
+      <Button type="danger" size="normal" block>empty</Button>
     </Col>
   </Row>
   <Divider></Divider>
   <component
     :is="pageComponent" 
     :config="(pageConfig as MPage)"
-    :on-init-value="onInitValue"
   >
   </component>
 </template>
@@ -39,7 +52,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { Row, Col, Button, Divider, showDialog } from 'vant';
-import { useEmitter } from 'emitter-help';
+import { useEmitter, PAGE_LIFE_CYCLE, FORM_LIFE_CYCLE } from 'emitter-help';
 import type { MPage } from '@tmagic/core';
 import { useComponent, useDsl } from '@tmagic/vue-runtime-help';
 
@@ -48,28 +61,30 @@ const pageComponent = useComponent('page');
 
 const page = ref<any>();
 const form = ref<any>();
-const onInitValue = (f: any) => {
-  form.value = f;
-}
 
-useEmitter().on('pageMounted', (p: any) => {
+useEmitter().on(PAGE_LIFE_CYCLE.MOUNTED, (p: any) => {
   page.value = p;
+})
+useEmitter().on(FORM_LIFE_CYCLE.MOUNTED, (p: any) => {
+  form.value = p;
 })
 
 const handleClearClick = () => {
   form.value?.clear()
 };
-
 const handleResetClick = () => {
   form.value?.reset()
 };
+const handleInitValuesClick = () => {
+  form.value?.setFieldsValue({
+    sqb: {
+      dxk: '2',
+      cb1: [0, 1],
+      rl: '2025-03-27'
+    }
+  })
+};
 const handleFormValueClick = () => {
-  // form.value?.setFieldsValue({
-  //   sqb: {
-  //     dxk: '1',
-  //     lx: 'b'
-  //   }
-  // })
   form.value?.validate().then(() => {
     showDialog({
       title: '表单数据提示',
@@ -88,6 +103,7 @@ const handleFieldValueClick = () => {
 }
 const handleSetPropsClick = () => {
   page.value?.updateComponentProp('tabs_ef637b80', 'active', 'tabf')
+  page.value?.updateComponentProp('button_9b3419a7', 'type', 'warning')
 }
 const disabled = ref<boolean>(false)
 const handleDisabledClick = () => {

@@ -96,7 +96,6 @@ export interface FormState {
     getChangedValue: () => FormValue;
     validate: () => Promise<boolean>;
     isModified: () => boolean;
-    onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
     reset: () => void;
     clear: () => void;
     [key: string]: any;
@@ -173,7 +172,6 @@ export interface FormItemRule extends FieldRule {
 }
 export interface FormConfig extends ComponentProps<FormProps> {
     config: FormItemProps<any>[] | FormItemProps<any>;
-    onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
 }
 export interface FieldConfig {
     clsName?: string;

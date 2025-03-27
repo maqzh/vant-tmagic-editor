@@ -11,7 +11,6 @@
       v-bind="item"
       :model="model || {}"
       :parent-name="parentName"
-      :on-init-value="onInitValue"
     ></component>
     <component
       v-else
@@ -23,18 +22,16 @@
       v-bind="config"
       :model="model || {}"
       :parent-name="parentName"
-      :on-init-value="onInitValue"
     ></component>
 </template>
 
 <script lang="ts" setup>
-import { FormValue, FormState } from '../schame';
+import { FormValue } from '../schame';
 import { useComponent } from '@tmagic/vue-runtime-help';
 defineProps<{
   config: any
   model?: FormValue
   parentName?: string
-  onInitValue?: (mForm: FormState | undefined, {formValue, initValue}: {formValue: FormValue, initValue: FormValue}) => FormValue;
 }>();
 
 </script>
