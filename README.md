@@ -5,11 +5,17 @@ tmagic-editor 适配vant组件
 
 #### 软件架构
 packages
+
  - emitter-help # 消息中枢工程
+
  - mock-server # 保存表单dsl数据服务
+
  - vant-adapter # 适配vant组件
+
 runtime # runtime工程
+
  page -- 页面runtime
+
  playground -- 设计器runtime
 
 playground # 设计器工程
