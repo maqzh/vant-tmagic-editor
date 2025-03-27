@@ -30,3 +30,9 @@ playground # 设计器工程
 
 1.  nodejs 18.x+
 2.  pnpm
+
+### 运行效果
+
+![设计图](URL_ADDRESS![playground.png](https://gitee.com/maqzh/vant-tmagic-editor/raw/master/images/playground.png)
+
+![运行图](URL_ADDRESS![runtime.png](https://gitee.com/maqzh/vant-tmagic-editor/raw/master/images/runtime.png)
